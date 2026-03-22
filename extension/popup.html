@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhishNet X</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">🛡</span>
+      <span class="logo-text">PhishNet<span class="logo-x">X</span></span>
+    </div>
+    <div class="header-actions">
+      <button class="theme-btn" id="theme-btn" title="Toggle theme">🌙</button>
+      <button class="icon-btn" id="refresh-btn" title="Rescan">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+      </button>
+      <button class="tab-btn" id="tab-scan" data-tab="scan">Scan</button>
+      <button class="tab-btn active" id="tab-chat" data-tab="chat">AI Chat</button>
+    </div>
+  </header>
+
+  <!-- Scan Tab -->
+  <div class="tab-content active" id="view-scan">
+    <div class="state-card" id="state-scanning" style="display:none;">
+      <div class="scan-animation">
+        <div class="scan-ring"></div>
+        <div class="scan-ring ring-2"></div>
+        <div class="scan-ring ring-3"></div>
+        <span class="scan-icon">🔍</span>
+      </div>
+      <p class="state-label">Scanning URL...</p>
+      <p class="state-url" id="scanning-url"></p>
+    </div>
+
+    <div class="result-card" id="result-card" style="display:none;">
+      <div class="result-header">
+        <div class="status-badge" id="status-badge">
+          <span class="status-icon" id="status-icon"></span>
+          <span class="status-text" id="status-text"></span>
+        </div>
+        <div class="risk-gauge">
+          <svg viewBox="0 0 80 80" class="gauge-svg">
+            <circle cx="40" cy="40" r="32" class="gauge-track"/>
+            <circle cx="40" cy="40" r="32" class="gauge-fill" id="gauge-fill"/>
+          </svg>
+          <div class="gauge-center">
+            <span class="gauge-score" id="gauge-score">0</span>
+            <span class="gauge-label">/ 100</span>
+          </div>
+        </div>
+      </div>
+      <div class="url-display" id="url-display"></div>
+      <div class="reasons-section" id="reasons-section">
+        <p class="reasons-title">Detection Details</p>
+        <ul class="reasons-list" id="reasons-list"></ul>
+      </div>
+      <div class="recommendation" id="recommendation" style="display:none;"></div>
+    </div>
+
+    <div class="state-card" id="state-unknown" style="display:none;">
+      <span style="font-size:32px;">🔌</span>
+      <p class="state-label">Backend not connected</p>
+      <p class="state-sub">Start the PhishNet X server on localhost:8000</p>
+      <button class="action-btn" id="retry-btn">Retry Scan</button>
+    </div>
+
+    <div class="state-card" id="state-empty">
+      <span style="font-size:32px;">🌐</span>
+      <p class="state-label">Navigate to a website</p>
+      <p class="state-sub">PhishNet X will automatically scan every URL you visit.</p>
+    </div>
+  </div>
+
+  <!-- Chat Tab -->
+  <div class="tab-content" id="view-chat">
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg assistant">
+        <div class="msg-bubble">
+          👋 Hi! I'm your AI security assistant.<br>Ask me anything about the current site or phishing threats.
+        </div>
+      </div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Ask about this site..." maxlength="300" />
+      <button class="send-btn" id="send-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span id="footer-status">PhishNet X v1.0</span>
+    <span id="theme-label" style="font-size:10px;opacity:.7;">Dark Mode</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
